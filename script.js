@@ -60,14 +60,8 @@ function handleMouseMove(e) {
       circlesPosition[i].diffY}px)`;
   }
 }
-
-// slider
-const projects = document.querySelectorAll(".project");
-
-for (let i = 0; i < projects.length; i++) {
-  projects[i].style.left = `${100 * i}vw`;
-}
-
+// ####################################################################
+// ####################################################################
 // ------------- PAGE SCROLL
 
 const menuLinks = document.querySelectorAll(".navigation a");
@@ -101,10 +95,8 @@ function smoothScroll() {
 }
 
 function smoothScrollOnClick(e) {
-  console.log(e);
   e.preventDefault();
   currentSection = e.target.getAttribute("href");
-  console.log("ssonCL", currentSection);
   smoothScroll();
 }
 
@@ -184,3 +176,44 @@ document.addEventListener("scroll", e => {
       .classList.remove("contacts-active");
   }
 });
+
+// ####################################################################
+// ####################################################################
+// -----------  Slider
+
+const slides = document.querySelectorAll(".project");
+const sliderLinks = document.querySelectorAll(".slider-link");
+const slider = document.querySelector(".slider");
+let currentSlide = "#slide1";
+let isScrollingX = false;
+
+//position the slides
+for (let i = 0; i < slides.length; i++) {
+  slides[i].style.left = `${100 * i}vw`;
+}
+// slider width;
+slider.style.width = `${100 * slides.length}vw`;
+
+// scroll to slide on dot click
+for (let i = 0; i < sliderLinks.length; i++) {
+  sliderLinks[i].addEventListener("click", e => showSlideOnDotClick(e));
+}
+
+function showSlideOnDotClick(e) {
+  e.preventDefault();
+  currentSlide = e.target.getAttribute("href")
+    ? e.target.getAttribute("href")
+    : e.path[1].getAttribute("href");
+  console.log(currentSlide);
+
+  // slider.style.transform = `translate(-${window.innerWidth}px,0)`;
+
+  isScrolling = true;
+  isScrollingX = true;
+  const width = document.querySelector(currentSlide).offsetLeft;
+  window.scrollTo({
+    top: document.querySelector("#projects").offsetTop,
+    left: width,
+    behavior: "smooth"
+  });
+}

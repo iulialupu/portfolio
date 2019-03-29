@@ -11,7 +11,9 @@
   --h2-size: 1.4rem;
   --nav-item: calc(100vh / 6);
 }
-
+::-webkit-scrollbar {
+  display: none;
+}
 body,
 * {
   padding: 0;
@@ -83,7 +85,7 @@ p {
   position: fixed;
   top: 0;
   right: 0;
-  z-index: 15;
+  z-index: 1;
   height: 100vh;
   width: 52px;
   display: flex;
@@ -166,7 +168,7 @@ p {
 .navigation a.active .menu-text {
   display: block;
   border-bottom: 1px solid var(--pink);
-  color: var(--dark-blue2);
+  color: var(--dark-blue);
 }
 
 /* **************** HEADER | HOME  ************** */
@@ -203,6 +205,7 @@ p {
   );
   border-radius: 50%;
   position: absolute;
+  z-index: 5;
   transform-style: preserve-3d;
   transform: rotateX(0deg) rotateY(0deg);
 }
@@ -391,7 +394,7 @@ ul.technologies-used {
 
 /* ****************** CONTACTS SECTION ******************** */
 .contacts {
-  background-color: rgb(243, 162, 162);
+  background-color: var(--pink);
 }
 .contacts .sliding-text:after {
   background-color: var(--light-grey);
@@ -449,63 +452,61 @@ ul.technologies-used {
   animation: width-grow 800ms ease-out 600ms forwards;
 }
 
-/* SLIDER */
+/* ******************************* SLIDER ****************************** */
 .slider-container {
-  overflow: hidden;
+  /* overflow: hidden; */
+  position: relative;
 }
+
 .slider {
   width: 300vw;
   height: 100vh;
-  overflow-x: sroll;
-  scroll-behavior: smooth;
-  scroll-snap-type: y mandatory;
 }
 
 .project {
   width: 100vw;
   height: 100vh;
-  display: flex;
-  align-items: center;
   position: absolute;
-  scroll-snap-align: center;
 }
 
 /* dots */
+.slider-nav {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 5vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 22;
+}
 .slider-dots {
-  position: fixed;
-  bottom: 10px;
-  left: 50%;
-  transform: translateX(-50%);
-  z-index: 10;
   list-style-type: none;
   display: flex;
 }
+.slider-link {
+  display: block;
+  width: 22px;
+  height: 22px;
+  padding: 8px;
+  margin: 8px;
+  margin-bottom: 15px;
+}
 .slider-dot {
   display: block;
-  width: 10px;
-  height: 10px;
+  width: 6px;
+  height: 6px;
   border-radius: 50%;
-  margin: 10px;
-  background-color: var(--dark-blue);
+  background: var(--light-blue);
+  transition: background 0.3s ease;
 }
-.slider-dot:active {
-  transform: scale(1.3);
+/* hover dot */
+.slider-link:hover .slider-dot {
+  background: var(--dark-blue);
 }
-
-/* Log Text */
-#log-text {
-  position: fixed;
-  top: 0;
-  left: 10px;
-  background: lightcoral;
-  width: 200px;
-  z-index: 20;
-}
-#log-text2 {
-  position: fixed;
-  top: 50%;
-  left: 10px;
-  background: rgb(145, 165, 253);
-  width: 200px;
-  z-index: 20;
+/* active dot */
+.slider-link.active-dot .slider-dot {
+  transform: scale(1.6);
+  background: var(--pink);
 }
