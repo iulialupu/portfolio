@@ -74,12 +74,12 @@ let prevScrollPos = null;
 let currentScrollPos = null;
 let isScrolling = false;
 
-function addActiveClass() {
-  for (let i = 0; i < menuLinks.length; i++) {
-    menuLinks[i].classList.remove("active");
+function addActiveClass(linksList, current, menuClassStr) {
+  for (let i = 0; i < linksList.length; i++) {
+    linksList[i].classList.remove("active");
   }
   document
-    .querySelector(`.navigation a[href='${currentSection}']`)
+    .querySelector(`.${menuClassStr} a[href='${current}']`)
     .classList.add("active");
 }
 
@@ -91,7 +91,7 @@ function smoothScroll() {
     left: 0,
     behavior: "smooth"
   });
-  addActiveClass();
+  addActiveClass(menuLinks, currentSection, "navigation");
 }
 
 function smoothScrollOnClick(e) {
@@ -116,7 +116,7 @@ function nextSection() {
 }
 
 // add active class to home section nav-link as default;
-addActiveClass();
+addActiveClass(menuLinks, currentSection, "navigation");
 
 // smooth scroll to section on nav-link click
 for (let i = 0; i < menuLinks.length; i++) {
@@ -163,8 +163,16 @@ document.addEventListener("scroll", e => {
   }
   prevScrollPos = currentScrollPos;
 
+  // make the slider-dots visible on projects section
+  // has nothing to do with the smooth scroll itself
+  if (currentSection === "#projects") {
+    document.querySelector(".slider-nav").classList.add("visible");
+  } else {
+    document.querySelector(".slider-nav").classList.remove("visible");
+  }
+
   // change the color of active nav-link from pink to white when contacts section is in view
-  // has nothing to do with the smooth scroll
+  // has nothing to do with the smooth scroll itself
   if (currentScrollPos === document.getElementById("contacts").offsetTop) {
     document
       .querySelector(".navigation a[href='#contacts']")
@@ -216,4 +224,15 @@ function showSlideOnDotClick(e) {
     left: width,
     behavior: "smooth"
   });
+
+  addActiveClass(sliderLinks, currentSlide, "slider-nav");
 }
+
+// function addActiveClass(linksList, current) {
+//   for (let i = 0; i < linksList.length; i++) {
+//     linksList[i].classList.remove("active");
+//   }
+//   document
+//     .querySelector(`.navigation a[href='${current}']`)
+//     .classList.add("active");
+// }
