@@ -194,6 +194,48 @@ const sliderLinks = document.querySelectorAll(".slider-link");
 const slider = document.querySelector(".slider");
 let currentSlide = "#slide1";
 let isScrollingX = false;
+const slidesList = Array.from(sliderLinks, link => link.getAttribute("href"));
+
+function slideScroll() {
+  isScrolling = true;
+  isScrollingX = true;
+  const width = document.querySelector(currentSlide).offsetLeft;
+  window.scrollTo({
+    top: document.querySelector("#projects").offsetTop,
+    left: width,
+    behavior: "smooth"
+  });
+
+  //function from smooth scroll
+  addActiveClass(sliderLinks, currentSlide, "slider-nav");
+}
+
+function showSlideOnDotClick(e) {
+  e.preventDefault();
+  currentSlide = e.target.getAttribute("href")
+    ? e.target.getAttribute("href")
+    : e.path[1].getAttribute("href");
+  console.log(currentSlide);
+
+  // slider.style.transform = `translate(-${window.innerWidth}px,0)`;
+
+  slideScroll();
+}
+
+function prevSlide() {
+  if (slidesList.indexOf(currentSlide) === 0) {
+    return;
+  }
+  currentSlide = slidesList[slidesList.indexOf(currentSlide) - 1];
+  slideScroll();
+}
+function nextSlide() {
+  if (slidesList.indexOf(currentSlide) === slidesList.length - 1) {
+    return;
+  }
+  currentSlide = slidesList[slidesList.indexOf(currentSlide) + 1];
+  slideScroll();
+}
 
 //position the slides
 for (let i = 0; i < slides.length; i++) {
@@ -207,32 +249,15 @@ for (let i = 0; i < sliderLinks.length; i++) {
   sliderLinks[i].addEventListener("click", e => showSlideOnDotClick(e));
 }
 
-function showSlideOnDotClick(e) {
-  e.preventDefault();
-  currentSlide = e.target.getAttribute("href")
-    ? e.target.getAttribute("href")
-    : e.path[1].getAttribute("href");
-  console.log(currentSlide);
-
-  // slider.style.transform = `translate(-${window.innerWidth}px,0)`;
-
-  isScrolling = true;
-  isScrollingX = true;
-  const width = document.querySelector(currentSlide).offsetLeft;
-  window.scrollTo({
-    top: document.querySelector("#projects").offsetTop,
-    left: width,
-    behavior: "smooth"
-  });
-
-  addActiveClass(sliderLinks, currentSlide, "slider-nav");
-}
-
-// function addActiveClass(linksList, current) {
-//   for (let i = 0; i < linksList.length; i++) {
-//     linksList[i].classList.remove("active");
-//   }
-//   document
-//     .querySelector(`.navigation a[href='${current}']`)
-//     .classList.add("active");
-// }
+// scroll to slide on ⬅ and ➡ keys
+document.addEventListener("keydown", e => {
+  if (e.key === "ArrowLeft") {
+    e.preventDefault();
+    prevSlide();
+  }
+  if (e.key === "ArrowRight") {
+    e.preventDefault();
+    nextSlide();
+  }
+  return;
+});
