@@ -136,6 +136,14 @@ p {
   background: var(--pink);
 }
 
+/* add contacts-sctive class with js when contacts section */
+.navigation a.active.contacts-active .menu-shape {
+  background: var(--light-grey);
+}
+.navigation a.active.contacts-active .menu-text {
+  border-bottom: 1px solid var(--light-grey);
+}
+
 /* Menu-Text */
 .menu-text {
   display: none;

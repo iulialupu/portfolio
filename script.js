@@ -1,3 +1,4 @@
+// -------------- Bubles from the Home section
 const container = document.querySelector("#home");
 const circlesContainer = document.querySelector(".circles-container");
 const H = window.innerHeight;
@@ -75,6 +76,9 @@ const sectionsList = [];
 for (let i = 0; i < menuLinks.length; i++) {
   sectionsList.push(menuLinks[i].getAttribute("href"));
 }
+let prevScrollPos = null;
+let currentScrollPos = null;
+let isScrolling = false;
 
 function addActiveClass() {
   for (let i = 0; i < menuLinks.length; i++) {
@@ -84,19 +88,6 @@ function addActiveClass() {
     .querySelector(`.navigation a[href='${currentSection}']`)
     .classList.add("active");
 }
-
-// function smoothScrollOnClick(e) {
-//     e.preventDefault();
-//     window.scrollTo({
-//       top: i * window.innerHeight,
-//       left: 0,
-//       behavior: "smooth"
-//     });
-
-//     currentSection = menuLinks[i];
-//     console.log(currentSection);
-//     addActiveClass();
-//   }
 
 function smoothScroll() {
   isScrolling = true;
@@ -153,124 +144,8 @@ document.addEventListener("keydown", e => {
   return;
 });
 
-// smooth scroll to section on scroll
-// document.addEventListener("wheel", e => {
-//   console.log(
-//     e,
-//     window.pageYOffset,
-//     window.scrollY,
-//     document.querySelector(currentSection).offsetTop
-//   );
-//   if (window.scrollY > document.querySelector(currentSection).offsetTop) {
-//     console.log("scroll down");
-//     // nextSection();
-
-//     if (sectionsList.indexOf(currentSection) === sectionsList.length - 1) {
-//       return;
-//     }
-
-//     const height =
-//       document.querySelector(currentSection).offsetTop + window.innerHeight;
-//     window.scrollTo({
-//       top: height,
-//       left: 0,
-//       behavior: "smooth"
-//     });
-
-//     if (
-//       window.scrollY ===
-//       document.querySelector(currentSection).offsetTop + window.innerHeight
-//     ) {
-//       currentSection = sectionsList[sectionsList.indexOf(currentSection) + 1];
-//       addActiveClass();
-//       console.log("at next");
-//     }
-//   } else if (
-//     window.scrollY < document.querySelector(currentSection).offsetTop
-//   ) {
-//     console.log("scroll up");
-//     prevSection();
-
-//     if (sectionsList.indexOf(currentSection) === 0) {
-//       return;
-//     }
-//     const height =
-//       document.querySelector(currentSection).offsetTop - window.innerHeight;
-//     window.scrollTo({
-//       top: height,
-//       left: 0,
-//       behavior: "smooth"
-//     });
-
-//     if (
-//       window.scrollY ===
-//       document.querySelector(currentSection).offsetTop - window.innerHeight
-//     ) {
-//       currentSection = sectionsList[sectionsList.indexOf(currentSection) - 1];
-//       addActiveClass();
-//       console.log("at prev");
-//     }
-//   } else {
-//     return;
-//   }
-// });
-
-const logText = document.getElementById("log-text");
-const logText2 = document.getElementById("log-text2");
-// document.querySelector(".page-content").addEventListener("wheel", e => {
-//   e.preventDefault();
-
-//   logText.innerHTML = `wheel:
-//   ${e}
-//   window.pageYOffset: ${window.pageYOffset};
-//   window.scrollY: ${Math.round(window.scrollY)};
-//   window.innerHeight: ${window.innerHeight};
-//   offsetY: ${e.offsetY};
-//   pageY: ${e.pageY};
-//   clientY: ${e.clientY};
-//   screenY: ${e.screenY};
-//   pageY-screenY: ${e.pageY - e.screenY}
-//   wheelDeltaY: ${e.wheelDeltaY};
-//   -------------------------------
-//   currentSection: ${currentSection};
-//   (currentSection).offsetTop: ${
-//     document.querySelector(currentSection).offsetTop
-//   };
-// `;
-//   if (e.wheelDeltaY > 0) {
-//     prevSection();
-//     console.log("scroll up");
-//   } else if (e.wheelDeltaY < 0) {
-//     nextSection();
-//     console.log("scroll down");
-//   }
-
-//   logText2.innerHTML = `wheel:
-//   ${e}
-//   window.pageYOffset: ${window.pageYOffset};
-//   window.scrollY: ${Math.round(window.scrollY)};
-//   window.innerHeight: ${window.innerHeight};
-//   offsetY: ${e.offsetY};
-//   pageY: ${e.pageY};
-//   clientY: ${e.clientY};
-//   screenY: ${e.screenY};
-//   pageY-screenY: ${e.pageY - e.screenY}
-//   wheelDeltaY: ${e.wheelDeltaY};
-//   -------------------------------
-//   currentSection: ${currentSection};
-//   (currentSection).offsetTop: ${
-//     document.querySelector(currentSection).offsetTop
-//   };
-// `;
-// });
-
-let prevScrollPos = null;
-let currentScrollPos = null;
-let isScrolling = false;
-
+// smooth scroll to section on scroll event
 document.addEventListener("scroll", e => {
-  console.log("| current scroll", currentScrollPos);
-  console.log("prev scroll", prevScrollPos);
   console.log(isScrolling);
   currentScrollPos = Math.round(window.scrollY);
 
@@ -278,6 +153,7 @@ document.addEventListener("scroll", e => {
     // isScrolling = true
     if (currentScrollPos === document.querySelector(currentSection).offsetTop) {
       isScrolling = false;
+      // animate section when it is for the first time in view
       document.querySelector(currentSection).classList.add("in-view");
     } else {
       return;
@@ -293,62 +169,18 @@ document.addEventListener("scroll", e => {
       prevSection();
     }
   }
-
   prevScrollPos = currentScrollPos;
+
+  // change the color of active nav-link from pink to white when contacts section is in view
+  // has nothing to do with the smooth scroll
+  if (currentScrollPos === document.getElementById("contacts").offsetTop) {
+    document
+      .querySelector(".navigation a[href='#contacts']")
+      .classList.add("contacts-active");
+  }
+  if (currentScrollPos < document.getElementById("contacts").offsetTop) {
+    document
+      .querySelector(".navigation a[href='#contacts']")
+      .classList.remove("contacts-active");
+  }
 });
-
-// document.addEventListener("scroll", e => {
-//   currentScrollPos = Math.round(window.scrollY);
-
-//   //   logText.innerHTML = `scroll:
-//   //   ${e}
-//   //   window.scrollY: ${Math.round(window.scrollY)};
-//   //   window.innerHeight: ${window.innerHeight};
-//   //   previous Scroll: ${prevScollPos};
-//   //   -------------------------------
-//   //   currentSection: ${currentSection};
-//   //   (currentSection).offsetTop: ${
-//   //     document.querySelector(currentSection).offsetTop
-//   //   };
-//   // `;
-
-//   if (!isScrolling) {
-//     e.preventDefault();
-//     // scroll down to next section
-//     if (currentScrollPos > document.querySelector(currentSection).offsetTop) {
-//       const height =
-//         document.querySelector(currentSection).offsetTop + window.innerHeight;
-//       window.scrollTo({
-//         top: height,
-//         left: 0,
-//         behavior: "smooth"
-//       });
-//       // isScrolling = true;
-//       console.log("scrolling down");
-//       // scroll up to prev section
-//     } else if (
-//       currentScrollPos < document.querySelector(currentSection).offsetTop
-//     ) {
-//       const height =
-//         document.querySelector(currentSection).offsetTop - window.innerHeight;
-//       window.scrollTo({
-//         top: height,
-//         left: 0,
-//         behavior: "smooth"
-//       });
-//       // isScrolling = true;
-//       console.log("scrolling up");
-//       // Scroll stop and add active class;
-//     } else {
-//       for (let menuLink in menuLinks) {
-//         if ((document.querySelector(menuLink).offsetTop = currentScrollPos)) {
-//           currentSection = menuLink;
-//         }
-//       }
-//       console.log("Hey! current section is ", currentSection);
-//       addActiveClass();
-//       // isScrolling = false;
-//     }
-//   }
-//   prevScollPos = currentScrollPos;
-// });
