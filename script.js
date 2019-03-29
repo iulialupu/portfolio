@@ -62,7 +62,7 @@ function handleMouseMove(e) {
 }
 // ####################################################################
 // ####################################################################
-// ------------- PAGE SCROLL
+// ------------------ PAGE SCROLL
 
 const menuLinks = document.querySelectorAll(".navigation a");
 let currentSection = "#home";
@@ -195,6 +195,8 @@ const slider = document.querySelector(".slider");
 let currentSlide = "#slide1";
 let isScrollingX = false;
 const slidesList = Array.from(sliderLinks, link => link.getAttribute("href"));
+const leftArrow = document.querySelector(".arrow.left");
+const rightArrow = document.querySelector(".arrow.right");
 
 function slideScroll() {
   isScrolling = true;
@@ -206,7 +208,7 @@ function slideScroll() {
     behavior: "smooth"
   });
 
-  //function from smooth scroll
+  //function from smooth scroll (look up)
   addActiveClass(sliderLinks, currentSlide, "slider-nav");
 }
 
@@ -249,6 +251,9 @@ for (let i = 0; i < sliderLinks.length; i++) {
   sliderLinks[i].addEventListener("click", e => showSlideOnDotClick(e));
 }
 
+// first slide as default
+addActiveClass(sliderLinks, currentSlide, "slider-nav");
+
 // scroll to slide on ⬅ and ➡ keys
 document.addEventListener("keydown", e => {
   if (e.key === "ArrowLeft") {
@@ -261,3 +266,13 @@ document.addEventListener("keydown", e => {
   }
   return;
 });
+
+// scroll to slide on left and right arrow (line)
+leftArrow.onclick = e => {
+  console.log(e);
+  prevSlide();
+};
+rightArrow.onclick = e => {
+  console.log(e);
+  nextSlide();
+};

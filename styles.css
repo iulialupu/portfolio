@@ -337,6 +337,9 @@ p {
 .projects {
   background: var(--grey);
 }
+#slide3 {
+  background: var(--light-grey);
+}
 .project-image {
   width: 100%;
   height: 300px;
@@ -504,12 +507,39 @@ ul.technologies-used {
   background: var(--light-blue);
   transition: background 0.3s ease;
 }
-/* hover dot */
+/* dot | hover */
 .slider-link:hover .slider-dot {
   background: var(--dark-blue);
 }
-/* active dot */
+/* dot | active */
 .slider-link.active .slider-dot {
   transform: scale(1.6);
   background: var(--pink);
+}
+
+/* arrows */
+.arrow {
+  width: 100px;
+  height: 21px;
+  cursor: pointer;
+  margin: 8px 30px 30px;
+  position: relative;
+}
+.arrow span {
+  display: block;
+  width: 100px;
+  height: 0.5px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: var(--light-blue);
+  transition: 0.1s ease;
+}
+/* arrow | hover */
+.arrow:hover span {
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: var(--dark-blue);
 }
