@@ -383,6 +383,7 @@ ul.technologies-used {
 /* ****************** OTHER SECTION ******************** */
 .other {
   background-color: var(--light-grey);
+  margin-left: 200vw;
 }
 .other h3 {
   text-align: center;
@@ -398,6 +399,7 @@ ul.technologies-used {
 /* ****************** CONTACTS SECTION ******************** */
 .contacts {
   background-color: var(--pink);
+  margin-left: 200vw;
 }
 .contacts .sliding-text:after {
   background-color: var(--light-grey);
