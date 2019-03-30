@@ -11,7 +11,9 @@
   --h2-size: 1.4rem;
   --nav-item: calc(100vh / 6);
 }
-
+::-webkit-scrollbar {
+  display: none;
+}
 body,
 * {
   padding: 0;
@@ -83,7 +85,7 @@ p {
   position: fixed;
   top: 0;
   right: 0;
-  z-index: 15;
+  z-index: 1;
   height: 100vh;
   width: 52px;
   display: flex;
@@ -166,7 +168,7 @@ p {
 .navigation a.active .menu-text {
   display: block;
   border-bottom: 1px solid var(--pink);
-  color: var(--dark-blue2);
+  color: var(--dark-blue);
 }
 
 /* **************** HEADER | HOME  ************** */
@@ -175,6 +177,7 @@ p {
   height: 100vh;
   overflow: hidden;
   padding: 5vw 12vw 10vw 28vw;
+  position: relative;
 }
 
 .circles-container {
@@ -203,6 +206,7 @@ p {
   );
   border-radius: 50%;
   position: absolute;
+  z-index: 5;
   transform-style: preserve-3d;
   transform: rotateX(0deg) rotateY(0deg);
 }
@@ -334,6 +338,15 @@ p {
 .projects {
   background: var(--grey);
 }
+#slide1 {
+  background: var(--grey);
+}
+#slide2 {
+  background: var(--light-grey);
+}
+#slide3 {
+  background: var(--grey);
+}
 .project-image {
   width: 100%;
   height: 300px;
@@ -376,7 +389,7 @@ ul.technologies-used {
 
 /* ****************** OTHER SECTION ******************** */
 .other {
-  background-color: var(--light-grey);
+  background-color: white;
 }
 .other h3 {
   text-align: center;
@@ -391,7 +404,7 @@ ul.technologies-used {
 
 /* ****************** CONTACTS SECTION ******************** */
 .contacts {
-  background-color: rgb(243, 162, 162);
+  background-color: var(--pink);
 }
 .contacts .sliding-text:after {
   background-color: var(--light-grey);
@@ -449,61 +462,99 @@ ul.technologies-used {
   animation: width-grow 800ms ease-out 600ms forwards;
 }
 
-/* SLIDER */
+/* ******************************* SLIDER ****************************** */
 .slider-container {
-  overflow: hidden;
+  /* overflow: hidden; */
+  position: relative;
 }
+
 .slider {
   width: 100vw;
   height: 100vh;
+<<<<<<< HEAD
   overflow: hidden;
+=======
+>>>>>>> new-slider
 }
 
 .project {
   width: 100vw;
   height: 100vh;
-  display: flex;
-  align-items: center;
   position: absolute;
+<<<<<<< HEAD
   overflow: hidden;
+=======
+>>>>>>> new-slider
 }
 
 /* dots */
-.slider-dots {
+.slider-nav {
   position: fixed;
-  bottom: 10px;
-  left: 50%;
-  transform: translateX(-50%);
-  z-index: 10;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 5vh;
+  display: none;
+  justify-content: center;
+  align-items: center;
+  z-index: 22;
+}
+.visible {
+  display: flex;
+}
+.slider-dots {
   list-style-type: none;
   display: flex;
 }
+.slider-link {
+  display: block;
+  width: 22px;
+  height: 22px;
+  padding: 8px;
+  margin: 8px;
+  margin-bottom: 15px;
+}
 .slider-dot {
   display: block;
-  width: 10px;
-  height: 10px;
+  width: 6px;
+  height: 6px;
   border-radius: 50%;
-  margin: 10px;
-  background-color: var(--dark-blue);
+  background: var(--light-blue);
+  transition: background 0.3s ease;
 }
-.slider-dot:active {
-  transform: scale(1.3);
+/* dot | hover */
+.slider-link:hover .slider-dot {
+  background: var(--dark-blue);
+}
+/* dot | active */
+.slider-link.active .slider-dot {
+  transform: scale(1.6);
+  background: var(--pink);
 }
 
-/* Log Text */
-#log-text {
-  position: fixed;
-  top: 0;
-  left: 10px;
-  background: lightcoral;
-  width: 200px;
-  z-index: 20;
+/* arrows */
+.arrow {
+  width: 100px;
+  height: 21px;
+  cursor: pointer;
+  margin: 8px 30px 30px;
+  position: relative;
 }
-#log-text2 {
-  position: fixed;
+.arrow span {
+  display: block;
+  width: 100px;
+  height: 0.5px;
+  position: absolute;
   top: 50%;
-  left: 10px;
-  background: rgb(145, 165, 253);
-  width: 200px;
-  z-index: 20;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: var(--light-blue);
+  transition: 0.1s ease;
+}
+/* arrow | hover */
+.arrow:hover span {
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: var(--dark-blue);
 }
