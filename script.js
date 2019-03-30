@@ -61,13 +61,6 @@ function handleMouseMove(e) {
   }
 }
 
-// slider
-const projects = document.querySelectorAll(".project");
-
-for (let i = 0; i < projects.length; i++) {
-  projects[i].style.left = `${100 * i}vw`;
-}
-
 // ------------- PAGE SCROLL
 
 const menuLinks = document.querySelectorAll(".navigation a");
@@ -101,10 +94,8 @@ function smoothScroll() {
 }
 
 function smoothScrollOnClick(e) {
-  console.log(e);
   e.preventDefault();
   currentSection = e.target.getAttribute("href");
-  console.log("ssonCL", currentSection);
   smoothScroll();
 }
 
@@ -146,7 +137,6 @@ document.addEventListener("keydown", e => {
 
 // smooth scroll to section on scroll event
 document.addEventListener("scroll", e => {
-  console.log(isScrolling);
   currentScrollPos = Math.round(window.scrollY);
 
   if (isScrolling) {

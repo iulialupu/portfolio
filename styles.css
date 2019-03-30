@@ -454,11 +454,9 @@ ul.technologies-used {
   overflow: hidden;
 }
 .slider {
-  width: 300vw;
+  width: 100vw;
   height: 100vh;
-  overflow-x: sroll;
-  scroll-behavior: smooth;
-  scroll-snap-type: y mandatory;
+  overflow: hidden;
 }
 
 .project {
@@ -467,7 +465,7 @@ ul.technologies-used {
   display: flex;
   align-items: center;
   position: absolute;
-  scroll-snap-align: center;
+  overflow: hidden;
 }
 
 /* dots */
