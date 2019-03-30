@@ -177,6 +177,7 @@ p {
   height: 100vh;
   overflow: hidden;
   padding: 5vw 12vw 10vw 28vw;
+  position: relative;
 }
 
 .circles-container {
@@ -337,8 +338,14 @@ p {
 .projects {
   background: var(--grey);
 }
-#slide3 {
+#slide1 {
+  background: var(--grey);
+}
+#slide2 {
   background: var(--light-grey);
+}
+#slide3 {
+  background: var(--grey);
 }
 .project-image {
   width: 100%;
@@ -382,8 +389,7 @@ ul.technologies-used {
 
 /* ****************** OTHER SECTION ******************** */
 .other {
-  background-color: var(--light-grey);
-  margin-left: 200vw;
+  background-color: white;
 }
 .other h3 {
   text-align: center;
@@ -399,7 +405,6 @@ ul.technologies-used {
 /* ****************** CONTACTS SECTION ******************** */
 .contacts {
   background-color: var(--pink);
-  margin-left: 200vw;
 }
 .contacts .sliding-text:after {
   background-color: var(--light-grey);

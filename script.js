@@ -78,13 +78,18 @@ function addActiveClass(linksList, current, menuClassStr) {
   document
     .querySelector(`.${menuClassStr} a[href='${current}']`)
     .classList.add("active");
+  console.log(current);
 }
 
 function smoothScroll() {
   isScrolling = true;
+  const left =
+    currentSection === "#projects"
+      ? document.querySelector(currentSlide).offsetLeft
+      : document.querySelector(currentSection).offsetLeft;
   window.scrollTo({
     top: document.querySelector(currentSection).offsetTop,
-    left: document.querySelector(currentSection).offsetLeft,
+    left: left,
     behavior: "smooth"
   });
   addActiveClass(menuLinks, currentSection, "navigation");
@@ -132,54 +137,7 @@ document.addEventListener("keydown", e => {
   return;
 });
 
-// smooth scroll to section on scroll event
-// document.addEventListener("scroll", e => {
-//   console.log(isScrolling);
-//   currentScrollPos = Math.round(window.scrollY);
-
-//   if (isScrolling) {
-//     // isScrolling = true
-//     if (currentScrollPos === document.querySelector(currentSection).offsetTop) {
-//       isScrolling = false;
-//       // animate section when it is for the first time in view
-//       document.querySelector(currentSection).classList.add("in-view");
-//     } else {
-//       return;
-//     }
-
-//     // isScrolling = false
-//   } else {
-//     if (currentScrollPos > prevScrollPos) {
-//       //scroll down
-//       nextSection();
-//     } else if (currentScrollPos < prevScrollPos) {
-//       //scroll up
-//       prevSection();
-//     }
-//   }
-//   prevScrollPos = currentScrollPos;
-
-//   // make the slider-dots visible on projects section
-//   // has nothing to do with the smooth scroll itself
-//   if (currentSection === "#projects") {
-//     document.querySelector(".slider-nav").classList.add("visible");
-//   } else {
-//     document.querySelector(".slider-nav").classList.remove("visible");
-//   }
-
-//   // change the color of active nav-link from pink to white when contacts section is in view
-//   // has nothing to do with the smooth scroll itself
-//   if (currentScrollPos === document.getElementById("contacts").offsetTop) {
-//     document
-//       .querySelector(".navigation a[href='#contacts']")
-//       .classList.add("contacts-active");
-//   }
-//   if (currentScrollPos < document.getElementById("contacts").offsetTop) {
-//     document
-//       .querySelector(".navigation a[href='#contacts']")
-//       .classList.remove("contacts-active");
-//   }
-// });
+// smooth scroll to section on scroll event (see below)
 
 // ####################################################################
 // ####################################################################
@@ -204,15 +162,26 @@ function slideScroll() {
     behavior: "smooth"
   });
 
+  function addMarginToSections() {
+    for (let section of sectionsList) {
+      if (section !== "#projects") {
+        document.querySelector(
+          section
+        ).style.marginLeft = `${window.innerWidth *
+          slidesList.indexOf(currentSlide)}px`;
+      }
+    }
+  }
+
   //function from smooth scroll (look up)
   addActiveClass(sliderLinks, currentSlide, "slider-nav");
+  addMarginToSections();
 }
 
 function showSlideOnDotClick(e) {
   e.preventDefault();
   currentSlide =
     e.target.getAttribute("href") || e.path[1].getAttribute("href");
-
   slideScroll();
 }
 
@@ -259,20 +228,17 @@ document.addEventListener("keydown", e => {
   return;
 });
 
-// scroll to slide on left and right arrow (line)
+// scroll to slide on left and right arrows (lines)
 leftArrow.onclick = e => {
-  console.log(e);
   prevSlide();
 };
 rightArrow.onclick = e => {
-  console.log(e);
   nextSlide();
 };
 
-// 🌺
+// SCROLL EVENT
 // smooth scroll to section on scroll event
 document.addEventListener("scroll", e => {
-  console.log(isScrolling);
   currentScrollYPos = Math.round(window.scrollY);
   currentScrollXPos = Math.round(window.scrollX);
 
@@ -281,7 +247,7 @@ document.addEventListener("scroll", e => {
     if (
       currentScrollYPos === document.querySelector(currentSection).offsetTop
     ) {
-      // if in projects and still scrolling return
+      // if in projects and scrolling return
       if (
         currentSection === "#projects" &&
         currentScrollXPos !== document.querySelector(currentSlide).offsetLeft
@@ -299,6 +265,7 @@ document.addEventListener("scroll", e => {
 
     // isScrolling = false
   } else {
+    e.preventDefault();
     if (currentScrollYPos > prevScrollYPos) {
       //👇 scroll down
 
@@ -313,19 +280,7 @@ document.addEventListener("scroll", e => {
     } else if (currentScrollYPos < prevScrollYPos) {
       //👆 scroll up
 
-      console.log("Y=", currentScrollYPos, prevScrollYPos);
-      console.log("X=", currentScrollXPos, prevScrollXPos);
-      if (
-        currentSection === sectionsList[sectionsList.indexOf("#projects") + 1]
-      ) {
-        console.log(currentSection, currentSlide);
-        currentSection = "#projects";
-        currentSlide = slidesList[slidesList.length - 1];
-        slideScroll();
-      } else if (currentSection === "#projects") {
-        if (currentSlide === slidesList[0]) {
-          prevSection();
-        }
+      if (currentSection === "#projects" && currentSlide !== slidesList[0]) {
         prevSlide();
       } else {
         prevSection();
