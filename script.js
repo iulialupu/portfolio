@@ -1,4 +1,4 @@
-// -------------- Bubles from the Home section
+// -------------- Bubbles from the Home section
 const container = document.querySelector("#home");
 const circlesContainer = document.querySelector(".circles-container");
 const H = window.innerHeight;
@@ -10,16 +10,16 @@ function getRandomNumber(range) {
   return Math.floor(Math.random() * range);
 }
 
-function generateRandomElem(num) {
+function generateRandomElem(num, smallestSize, largestSize) {
   let circles = "";
 
   for (let i = 0; i < num; i++) {
     const objPosition = {
       top: getRandomNumber(H),
       left: getRandomNumber(W),
-      WH: getRandomNumber(270) + 10
+      WH: getRandomNumber(largestSize - smallestSize) + smallestSize
     };
-    /* object width and height, from 10px to 310px 👆 */
+    /* object width and height */
 
     circles =
       circles +
@@ -30,10 +30,6 @@ function generateRandomElem(num) {
   }
   circlesContainer.innerHTML = circles;
 }
-
-generateRandomElem(20);
-
-container.addEventListener("mousemove", e => handleMouseMove(e));
 
 function handleMouseMove(e) {
   const cursorPosition = {
@@ -60,20 +56,24 @@ function handleMouseMove(e) {
       circlesPosition[i].diffY}px)`;
   }
 }
-<<<<<<< HEAD
+
+generateRandomElem(20, 10, 280);
+
+container.addEventListener("mousemove", e => handleMouseMove(e));
+
+// ####################################################################
+// ####################################################################
 
 // ------------- PAGE SCROLL
-=======
-// ####################################################################
-// ####################################################################
-// ------------------ PAGE SCROLL
->>>>>>> new-slider
 
 const menuLinks = document.querySelectorAll(".navigation a");
 let currentSection = "#home";
-const sectionsList = Array.from(menuLinks, link => link.getAttribute("href"));
+const sectionsList = [];
+for (let i = 0; i < menuLinks.length; i++) {
+  sectionsList.push(menuLinks[i].getAttribute("href"));
+}
 let prevScrollYPos = null;
-let currentScrollYPos = null;
+let currentScrollPos = null;
 let isScrolling = false;
 
 function addActiveClass(linksList, current, menuClassStr) {
@@ -83,7 +83,6 @@ function addActiveClass(linksList, current, menuClassStr) {
   document
     .querySelector(`.${menuClassStr} a[href='${current}']`)
     .classList.add("active");
-  console.log(current);
 }
 
 function smoothScroll() {
@@ -155,7 +154,6 @@ let currentSlide = "#slide1";
 const slidesList = Array.from(sliderLinks, link => link.getAttribute("href"));
 const leftArrow = document.querySelector(".arrow.left");
 const rightArrow = document.querySelector(".arrow.right");
-let prevScrollXPos = null;
 let currentScrollXPos = null;
 
 function slideScroll() {
@@ -244,12 +242,8 @@ rightArrow.onclick = e => {
 // SCROLL EVENT
 // smooth scroll to section on scroll event
 document.addEventListener("scroll", e => {
-<<<<<<< HEAD
-  currentScrollPos = Math.round(window.scrollY);
-=======
   currentScrollYPos = Math.round(window.scrollY);
   currentScrollXPos = Math.round(window.scrollX);
->>>>>>> new-slider
 
   if (isScrolling) {
     // isScrolling = true
