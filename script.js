@@ -86,6 +86,7 @@ function addActiveClass(linksList, current, menuClassStr) {
 }
 
 function smoothScroll() {
+  addActiveClass(menuLinks, currentSection, "navigation");
   isScrolling = true;
   const left =
     currentSection === "#projects"
@@ -96,12 +97,15 @@ function smoothScroll() {
     left: left,
     behavior: "smooth"
   });
-  addActiveClass(menuLinks, currentSection, "navigation");
 }
 
 function smoothScrollOnClick(e) {
   e.preventDefault();
-  currentSection = e.target.getAttribute("href");
+  if (e.target.classList.contains("menu-text")) {
+    currentSection = e.path[1].getAttribute("href");
+  } else {
+    currentSection = e.target.getAttribute("href");
+  }
   smoothScroll();
 }
 
@@ -119,9 +123,6 @@ function nextSection() {
   currentSection = sectionsList[sectionsList.indexOf(currentSection) + 1];
   smoothScroll();
 }
-
-// add active class to home section nav-link as default;
-addActiveClass(menuLinks, currentSection, "navigation");
 
 // smooth scroll to section on nav-link click
 for (let i = 0; i < menuLinks.length; i++) {
@@ -156,6 +157,15 @@ const leftArrow = document.querySelector(".arrow.left");
 const rightArrow = document.querySelector(".arrow.right");
 let currentScrollXPos = null;
 
+function addMarginToSections() {
+  for (let section of sectionsList) {
+    if (section !== "#projects") {
+      document.querySelector(section).style.marginLeft = `${window.innerWidth *
+        slidesList.indexOf(currentSlide)}px`;
+    }
+  }
+}
+
 function slideScroll() {
   isScrolling = true;
   const width = document.querySelector(currentSlide).offsetLeft;
@@ -164,17 +174,6 @@ function slideScroll() {
     left: width,
     behavior: "smooth"
   });
-
-  function addMarginToSections() {
-    for (let section of sectionsList) {
-      if (section !== "#projects") {
-        document.querySelector(
-          section
-        ).style.marginLeft = `${window.innerWidth *
-          slidesList.indexOf(currentSlide)}px`;
-      }
-    }
-  }
 
   //function from smooth scroll (look up)
   addActiveClass(sliderLinks, currentSlide, "slider-nav");
@@ -215,10 +214,14 @@ for (let i = 0; i < sliderLinks.length; i++) {
   sliderLinks[i].addEventListener("click", e => showSlideOnDotClick(e));
 }
 
+// Scroll to first slide, first section
 // first slide as default
 addActiveClass(sliderLinks, currentSlide, "slider-nav");
+// add active class to home section nav-link as default;
+addActiveClass(menuLinks, currentSection, "navigation");
+smoothScroll();
 
-// scroll to slide on ⬅ and ➡ keys
+// scroll to slide, on ⬅ and ➡ keys down
 document.addEventListener("keydown", e => {
   if (e.key === "ArrowLeft") {
     e.preventDefault();
@@ -231,7 +234,7 @@ document.addEventListener("keydown", e => {
   return;
 });
 
-// scroll to slide on left and right arrows (lines)
+// scroll to slide, on left and right arrows click (- ... -)
 leftArrow.onclick = e => {
   prevSlide();
 };
@@ -293,7 +296,6 @@ document.addEventListener("scroll", e => {
   prevScrollYPos = currentScrollYPos;
 
   // make the slider-dots visible on projects section
-  // has nothing to do with the smooth scroll itself
   if (currentSection === "#projects") {
     document.querySelector(".slider-nav").classList.add("visible");
   } else {
@@ -311,5 +313,25 @@ document.addEventListener("scroll", e => {
     document
       .querySelector(".navigation a[href='#contacts']")
       .classList.remove("contacts-active");
+  }
+});
+
+// ####################################################################
+// ####################################################################
+// -----------  Menu
+
+const menuBtn = document.querySelector(".menu-btn");
+const nav = document.querySelector(".navigation");
+const menuCircle = document.querySelector(".menu-btn-circle");
+
+menuBtn.addEventListener("click", () => {
+  if (menuBtn.classList.contains("open")) {
+    menuBtn.classList.replace("open", "closed");
+    menuCircle.classList.replace("open", "closed");
+    nav.classList.replace("open", "closed");
+  } else if (menuBtn.classList.contains("closed")) {
+    menuBtn.classList.replace("closed", "open");
+    menuCircle.classList.replace("closed", "open");
+    nav.classList.replace("closed", "open");
   }
 });
