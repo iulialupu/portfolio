@@ -7,14 +7,7 @@
   --light-grey: rgb(236, 242, 250);
   --grey: rgb(224, 232, 243);
   --gradient: linear-gradient(to bottom, var(--grey), var(--light-grey));
-  /* --dark-blue: rgb(9, 27, 75);
-  --light-blue: rgb(42, 65, 114); 
-  --light-blue2: rgb(45, 58, 99);
-  --pink: rgb(253, 170, 202);
-  --dark-grey: rgb(183, 203, 228);
-  --light-grey: rgb(249, 247, 253);
-  --grey: rgb(235, 240, 245);
-  --gradient: linear-gradient(to bottom, var(--grey), var(--light-grey)); */
+
   --h1-size: 3.3vw;
   --h2-size: 1.4rem;
   --nav-item: calc(100vh / 6);
@@ -30,8 +23,9 @@ body,
 }
 body {
   cursor: url(./img/cursor.png), auto;
-  font-family: helvetica, -apple-system, BlinkMacSystemFont, avenir next, avenir,
-    helvetica neue, ubuntu, roboto, noto, segoe ui, arial, sans-serif;
+  /* font-family: helvetica, -apple-system, BlinkMacSystemFont, avenir next, avenir,
+    helvetica neue, ubuntu, roboto, noto, segoe ui, arial, sans-serif; */
+  font-family: sans-serif;
   font-size: 0.9rem;
   color: rgb(71, 70, 78);
 }
