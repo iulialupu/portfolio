@@ -1,15 +1,24 @@
 :root {
-  --dark-blue: rgb(18, 1, 56);
-  --dark-blue2: rgb(41, 10, 107);
-  --light-blue: rgb(73, 86, 124);
-  --pink: rgb(255, 184, 184);
-  --dark-grey: rgb(181, 193, 209);
+  --dark-blue: rgb(26, 18, 65);
+  --light-blue: rgb(36, 37, 97);
+  --light-blue2: rgb(74, 91, 146);
+  --pink: rgb(245, 180, 205);
+  --dark-grey: rgb(180, 200, 226);
+  --light-grey: rgb(236, 242, 250);
+  --grey: rgb(224, 232, 243);
+  --gradient: linear-gradient(to bottom, var(--grey), var(--light-grey));
+  /* --dark-blue: rgb(9, 27, 75);
+  --light-blue: rgb(42, 65, 114); 
+  --light-blue2: rgb(45, 58, 99);
+  --pink: rgb(253, 170, 202);
+  --dark-grey: rgb(183, 203, 228);
   --light-grey: rgb(249, 247, 253);
-  --grey: rgb(220, 216, 226);
-  --gradient: linear-gradient(to bottom, rgb(208, 219, 233), var(--light-grey));
-  --h1-size: 3vw;
+  --grey: rgb(235, 240, 245);
+  --gradient: linear-gradient(to bottom, var(--grey), var(--light-grey)); */
+  --h1-size: 3.3vw;
   --h2-size: 1.4rem;
   --nav-item: calc(100vh / 6);
+  /* 255, 184, 184 */
 }
 ::-webkit-scrollbar {
   display: none;
@@ -24,6 +33,7 @@ body {
   font-family: helvetica, -apple-system, BlinkMacSystemFont, avenir next, avenir,
     helvetica neue, ubuntu, roboto, noto, segoe ui, arial, sans-serif;
   font-size: 0.9rem;
+  color: rgb(71, 70, 78);
 }
 section {
   width: 100%;
@@ -43,7 +53,7 @@ h3 {
 h1 {
   text-transform: uppercase;
   font-size: var(--h1-size);
-  letter-spacing: 0.03pc;
+  letter-spacing: 0.02pc;
 }
 h2 {
   font-size: var(--h2-size);
@@ -54,7 +64,19 @@ h3 {
   margin-bottom: 1.4rem;
 }
 p {
+  font-size: 0.85rem;
   text-align: justify;
+  line-height: 1.6;
+}
+
+a.link {
+  color: var(--light-blue);
+  transition: background-color 0.3s;
+}
+a.link:hover {
+  color: var(--light-grey);
+  text-decoration: none;
+  background-color: var(--pink);
 }
 
 /* Sliding Text */
@@ -80,7 +102,7 @@ p {
   top: calc(var(--h2-size) + 0.32rem);
 }
 h1 .sliding-text:after {
-  top: calc(var(--h1-size) + 0.1vw);
+  top: calc(var(--h1-size) + 0.1vw - 5px);
 }
 
 /* ******************** MENU | NAV ******************** */
@@ -141,7 +163,7 @@ h1 .sliding-text:after {
   background: var(--pink);
 }
 
-/* add contacts-sctive class with js when contacts section */
+/* add contacts-active class with js when contacts section */
 .navigation a.active.contacts-active .menu-shape {
   background: var(--light-grey);
 }
@@ -156,7 +178,7 @@ h1 .sliding-text:after {
   text-transform: uppercase;
   font-size: 0.7rem;
   font-weight: bold;
-  right: var(--nav-item);
+  right: calc(var(--nav-item) / 1.3);
   top: 50%;
   transform: translateY(-50%);
   color: var(--light-blue);
@@ -179,7 +201,7 @@ h1 .sliding-text:after {
   width: 100%;
   height: 100vh;
   overflow: hidden;
-  padding: 5vw 12vw 10vw 28vw;
+  padding: 4vw 12vw 8vw 30vw;
   position: relative;
 }
 
@@ -203,10 +225,13 @@ h1 .sliding-text:after {
 
 .dot {
   background: radial-gradient(
-    rgb(255, 218, 218) 15%,
-    rgb(255, 197, 197) 40%,
-    rgb(255, 168, 168)
+    rgb(231, 177, 177) 15%,
+    rgb(228, 161, 161) 40%,
+    rgb(216, 144, 144)
   );
+  /*     rgb(255, 218, 218) 15%,
+    rgb(255, 197, 197) 40%,
+    rgb(255, 168, 168) */
   border-radius: 50%;
   position: absolute;
   transform-style: preserve-3d;
@@ -216,7 +241,7 @@ h1 .sliding-text:after {
 /* Heading  */
 .text-wrapper {
   position: absolute;
-  top: 16%;
+  top: 40%;
   left: 40%;
   transform: translate(-50%);
 }
@@ -331,23 +356,20 @@ section.in-view h2 .sliding-text:after {
 }
 
 /* ****************** PROJECTS SECTION ******************** */
-.projects {
-  background: var(--grey);
-}
-#slide1 {
-  background: var(--grey);
-}
-#slide2 {
+
+#slide1,
+#slide2,
+#slide3 {
   background: var(--light-grey);
 }
-#slide3 {
-  background: var(--grey);
-}
-.project-image {
-  width: 100%;
-  height: 300px;
+
+.gif {
   border-radius: 15px;
-  background-color: var(--dark-grey);
+  object-fit: cover;
+  object-position: center;
+  width: 100%;
+  height: auto;
+  box-shadow: 0 0 6px 1px var(--grey);
 }
 .links {
   display: inline-block;
@@ -377,10 +399,12 @@ section.in-view h2 .sliding-text:after {
   margin-bottom: 1.4rem;
 }
 ul.technologies-used {
-  /* padding-left: 12px; */
   font-size: 0.7rem;
   list-style-type: none;
-  color: var(--light-blue);
+  color: var(--light-blue2);
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  padding-bottom: 1rem;
 }
 
 /* ****************** OTHER SECTION ******************** */
@@ -395,7 +419,7 @@ ul.technologies-used {
 iframe,
 embed {
   width: 100%;
-  height: 40vh;
+  height: 70vh;
   overflow: hidden;
   border-radius: 15px;
   margin-bottom: 7px;
@@ -758,6 +782,26 @@ embed {
 
   /* Menu-Shape */
   .open .menu-shape {
+    display: none;
+  }
+
+  /********** PROJECTS SECTION | <768px *******/
+  section.project {
+    align-items: flex-start;
+    padding-top: 1rem;
+  }
+  .overflow-hidden-small {
+    height: 90%;
+    width: 100%;
+    overflow: scroll;
+  }
+
+  ul.technologies-used {
+    padding-bottom: 0.6rem;
+  }
+
+  /********** OTHER SECTION | <768px *******/
+  .hide-on-small {
     display: none;
   }
 }
