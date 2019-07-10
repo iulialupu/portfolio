@@ -25,7 +25,10 @@ function generateRandomElem(num, smallestSize, largestSize) {
       circles +
       `<div class='dot' style=' top: ${objPosition.top}px; left: ${
         objPosition.left
-      }px ; width: ${objPosition.WH}px; height:  ${objPosition.WH}px;' ></div>`;
+      }px ; width: ${objPosition.WH}px; height: ${
+        objPosition.WH
+      }px;  box-shadow: 0 0 ${(15 * objPosition.WH) /
+        largestSize}px 2px rgb(236, 165, 165);' ></div>`;
     circlesPosition.push(objPosition);
   }
   circlesContainer.innerHTML = circles;

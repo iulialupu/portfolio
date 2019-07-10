@@ -2,7 +2,7 @@
   --dark-blue: rgb(26, 18, 65);
   --light-blue: rgb(36, 37, 97);
   --light-blue2: rgb(74, 91, 146);
-  --pink: rgb(245, 180, 205);
+  --pink: rgb(255, 174, 185);
   --dark-grey: rgb(180, 200, 226);
   --light-grey: rgb(236, 242, 250);
   --grey: rgb(224, 232, 243);
@@ -22,10 +22,9 @@ body,
   margin: 0;
 }
 body {
-  cursor: url(./img/cursor.png), auto;
-  /* font-family: helvetica, -apple-system, BlinkMacSystemFont, avenir next, avenir,
-    helvetica neue, ubuntu, roboto, noto, segoe ui, arial, sans-serif; */
-  font-family: sans-serif;
+  cursor: url(./img/cursor1.png), auto;
+  font-family: helvetica, -apple-system, BlinkMacSystemFont, avenir next, avenir,
+    helvetica neue, ubuntu, roboto, noto, segoe ui, arial, sans-serif;
   font-size: 0.9rem;
   color: rgb(71, 70, 78);
 }
@@ -127,7 +126,6 @@ h1 .sliding-text:after {
   display: inline-block;
   width: var(--nav-item);
   height: var(--nav-item);
-  /* background-color: blue; */
 }
 /* Menu-Shape */
 .menu-shape {
@@ -219,13 +217,11 @@ h1 .sliding-text:after {
 
 .dot {
   background: radial-gradient(
-    rgb(231, 177, 177) 15%,
-    rgb(228, 161, 161) 40%,
-    rgb(216, 144, 144)
+    rgb(250, 213, 213) 15%,
+    rgb(245, 193, 193) 40%,
+    rgb(236, 165, 165)
   );
-  /*     rgb(255, 218, 218) 15%,
-    rgb(255, 197, 197) 40%,
-    rgb(255, 168, 168) */
+
   border-radius: 50%;
   position: absolute;
   transform-style: preserve-3d;
