@@ -49,9 +49,11 @@
   margin: 0 20px 0 0;
 }
 
-.links .hosted i,
 .links .github i {
   font-size: 1.6rem;
+}
+.links .hosted i {
+  font-size: 1.45rem;
 }
 
 .links {
