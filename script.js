@@ -25,10 +25,7 @@ function generateRandomElem(num, smallestSize, largestSize) {
       circles +
       `<div class='dot' style=' top: ${objPosition.top}px; left: ${
         objPosition.left
-      }px ; width: ${objPosition.WH}px; height: ${
-        objPosition.WH
-      }px;  box-shadow: 0 0 ${(15 * objPosition.WH) /
-        largestSize}px 2px rgb(236, 165, 165);' ></div>`;
+      }px ; width: ${objPosition.WH}px; height: ${objPosition.WH}px;' ></div>`;
     circlesPosition.push(objPosition);
   }
   circlesContainer.innerHTML = circles;
@@ -60,7 +57,7 @@ function handleMouseMove(e) {
   }
 }
 
-generateRandomElem(20, 10, 280);
+generateRandomElem(15, 10, 180);
 
 container.addEventListener("mousemove", e => handleMouseMove(e));
 
@@ -71,6 +68,7 @@ container.addEventListener("mousemove", e => handleMouseMove(e));
 
 const menuLinks = document.querySelectorAll(".navigation a");
 let currentSection = "#home";
+const hash = window.location.hash;
 const sectionsList = [];
 for (let i = 0; i < menuLinks.length; i++) {
   sectionsList.push(menuLinks[i].getAttribute("href"));
@@ -91,10 +89,7 @@ function addActiveClass(linksList, current, menuClassStr) {
 function smoothScroll() {
   addActiveClass(menuLinks, currentSection, "navigation");
   isScrolling = true;
-  const left =
-    currentSection === "#projects"
-      ? document.querySelector(currentSlide).offsetLeft
-      : document.querySelector(currentSection).offsetLeft;
+  const left = 0;
   window.scrollTo({
     top: document.querySelector(currentSection).offsetTop,
     left: left,
@@ -127,6 +122,17 @@ function nextSection() {
   smoothScroll();
 }
 
+// add active class to home section
+addActiveClass(menuLinks, currentSection, "navigation");
+
+// add active class
+if (hash != "") {
+  currentSection = hash;
+  addActiveClass(menuLinks, currentSection, "navigation");
+  smoothScroll();
+  isScrolling = true;
+}
+
 // smooth scroll to section on nav-link click
 for (let i = 0; i < menuLinks.length; i++) {
   menuLinks[i].addEventListener("click", e => smoothScrollOnClick(e));
@@ -145,127 +151,18 @@ document.addEventListener("keydown", e => {
   return;
 });
 
-// smooth scroll to section on scroll event (see below)
-
-// ####################################################################
-// ####################################################################
-// -----------  Slider
-
-const slides = document.querySelectorAll(".project");
-const sliderLinks = document.querySelectorAll(".slider-link");
-const slider = document.querySelector(".slider");
-let currentSlide = "#slide1";
-const slidesList = Array.from(sliderLinks, link => link.getAttribute("href"));
-const leftArrow = document.querySelector(".arrow.left");
-const rightArrow = document.querySelector(".arrow.right");
-let currentScrollXPos = null;
-
-function addMarginToSections() {
-  for (let section of sectionsList) {
-    if (section !== "#projects") {
-      document.querySelector(section).style.marginLeft = `${window.innerWidth *
-        slidesList.indexOf(currentSlide)}px`;
-    }
-  }
-}
-
-function slideScroll() {
-  isScrolling = true;
-  const width = document.querySelector(currentSlide).offsetLeft;
-  window.scrollTo({
-    top: document.querySelector("#projects").offsetTop,
-    left: width,
-    behavior: "smooth"
-  });
-
-  //function from smooth scroll (look up)
-  addActiveClass(sliderLinks, currentSlide, "slider-nav");
-  addMarginToSections();
-}
-
-function showSlideOnDotClick(e) {
-  e.preventDefault();
-  currentSlide =
-    e.target.getAttribute("href") || e.path[1].getAttribute("href");
-  slideScroll();
-}
-
-function prevSlide() {
-  if (slidesList.indexOf(currentSlide) === 0) {
-    return;
-  }
-  currentSlide = slidesList[slidesList.indexOf(currentSlide) - 1];
-  slideScroll();
-}
-function nextSlide() {
-  if (slidesList.indexOf(currentSlide) === slidesList.length - 1) {
-    return;
-  }
-  currentSlide = slidesList[slidesList.indexOf(currentSlide) + 1];
-  slideScroll();
-}
-
-//position the slides
-for (let i = 0; i < slides.length; i++) {
-  slides[i].style.left = `${100 * i}vw`;
-}
-// slider width;
-slider.style.width = `${100 * slides.length}vw`;
-
-// scroll to slide on dot click
-for (let i = 0; i < sliderLinks.length; i++) {
-  sliderLinks[i].addEventListener("click", e => showSlideOnDotClick(e));
-}
-
-// Scroll to first slide, first section
-// first slide as default
-addActiveClass(sliderLinks, currentSlide, "slider-nav");
-// add active class to home section nav-link as default;
-addActiveClass(menuLinks, currentSection, "navigation");
-smoothScroll();
-
-// scroll to slide, on ⬅ and ➡ keys down
-document.addEventListener("keydown", e => {
-  if (e.key === "ArrowLeft") {
-    e.preventDefault();
-    prevSlide();
-  }
-  if (e.key === "ArrowRight") {
-    e.preventDefault();
-    nextSlide();
-  }
-  return;
-});
-
-// scroll to slide, on left and right arrows click (- ... -)
-leftArrow.onclick = e => {
-  prevSlide();
-};
-rightArrow.onclick = e => {
-  nextSlide();
-};
-
 // SCROLL EVENT
 // smooth scroll to section on scroll event
 document.addEventListener("scroll", e => {
   currentScrollYPos = Math.round(window.scrollY);
-  currentScrollXPos = Math.round(window.scrollX);
 
   if (isScrolling) {
     // isScrolling = true
+
     if (
       currentScrollYPos === document.querySelector(currentSection).offsetTop
     ) {
-      // if in projects and scrolling return
-      if (
-        currentSection === "#projects" &&
-        currentScrollXPos !== document.querySelector(currentSlide).offsetLeft
-      ) {
-        return;
-      } else {
-        isScrolling = false;
-      }
-
+      isScrolling = false;
       // animate section when it is for the first time in view
       document.querySelector(currentSection).classList.add("in-view");
     } else {
@@ -277,33 +174,13 @@ document.addEventListener("scroll", e => {
     e.preventDefault();
     if (currentScrollYPos > prevScrollYPos) {
       //👇 scroll down
-
-      if (
-        currentSection === "#projects" &&
-        currentSlide !== slidesList[slidesList.length - 1]
-      ) {
-        nextSlide();
-      } else {
-        nextSection();
-      }
+      nextSection();
     } else if (currentScrollYPos < prevScrollYPos) {
       //👆 scroll up
-
-      if (currentSection === "#projects" && currentSlide !== slidesList[0]) {
-        prevSlide();
-      } else {
-        prevSection();
-      }
+      prevSection();
     }
   }
   prevScrollYPos = currentScrollYPos;
-
-  // make the slider-dots visible on projects section
-  if (currentSection === "#projects") {
-    document.querySelector(".slider-nav").classList.add("visible");
-  } else {
-    document.querySelector(".slider-nav").classList.remove("visible");
-  }
 
   // change the color of active nav-link from pink to white when contacts section is in view
   // has nothing to do with the smooth scroll itself
@@ -337,4 +214,26 @@ menuBtn.addEventListener("click", () => {
     menuCircle.classList.replace("closed", "open");
     nav.classList.replace("closed", "open");
   }
+});
+
+// ####################################################################
+// ####################################################################
+// -----------  Projects
+
+const projectImg = document.querySelectorAll(".project-image .gif");
+
+function replaceExtension(e, mouseIsIn) {
+  let src = e.target.getAttribute("src");
+
+  if (mouseIsIn) {
+    src = src.replace("jpg", "gif");
+  } else {
+    src = src.replace("gif", "jpg");
+  }
+  e.target.setAttribute("src", src);
+}
+
+projectImg.forEach(item => {
+  item.addEventListener("mouseenter", e => replaceExtension(e, true));
+  item.addEventListener("mouseleave", e => replaceExtension(e, false));
 });

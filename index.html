@@ -26,6 +26,12 @@
       crossorigin="anonymous"
     />
 
+    <!-- Google Fonts -->
+    <link
+      href="https://fonts.googleapis.com/css?family=Abril+Fatface|Roboto+Mono|Work+Sans&display=swap"
+      rel="stylesheet"
+    />
+
     <link rel="stylesheet" href="styles.css" />
 
     <link rel="shortcut icon" href="./img/favicon.ico" type="image/x-icon" />
@@ -85,6 +91,27 @@
       </ul>
     </nav>
 
+    <!-- Logo -->
+    <a href="/" class="logo"><img src="/img/logo.png" alt="Logo"/></a>
+    <!-- EMAIL -->
+    <div class="fixed-contacts hide-on-small">
+      <div class="fixed-contacts-box">
+        <div class="icon-links">
+          <a
+            href="https://github.com/iulialupu?tab=repositories"
+            target="_blank"
+          >
+            <i class="icon fab fa-github"></i>
+          </a>
+          <a href="https://codepen.io/iulialupu/" target="_blank">
+            <i class="icon fab fa-codepen"></i>
+          </a>
+        </div>
+
+        <span class="email">iuliana.lupu.dev@gmail.com</span>
+      </div>
+    </div>
+
     <!-- PAGE CONTENT -->
     <div class="page-content">
       <!--  -->
@@ -110,8 +137,10 @@
       <!-- ABOUT SECTION -->
       <section class="about" id="about">
         <div class="container">
-          <div class="row align-items-center">
-            <div class="col-lg-4 offset-lg-6 col-md-7 offset-md-4">
+          <div class="row">
+            <div class="col-lg-4 offset-lg-4 col-md-8 offset-md-2">
+              <!-- <img src="img/logo.png" alt="Logo" class="large-logo" /> -->
+
               <h2>
                 <div class="sliding-text-container">
                   <span class="sliding-text">Hi! My name is Iuliana</span>
@@ -142,233 +171,139 @@
       </section>
 
       <!-- PROJECTS SECTION -->
-
-      <div class="projects slider-container " id="projects">
-        <div class="slider">
-          <section class="project" id="slide1">
-            <div class="overflow-hidden-small">
-              <div class="container">
-                <div class="row">
-                  <div class="col-lg-4 offset-lg-7">
-                    <h3>Fylo Landing Page</h3>
-                  </div>
+      <section class="projects" id="projects">
+        <div class="container">
+          <div class="row text-align-center">
+            <div class="col-lg-4 offset-lg-4 col-md-8 offset-md-2 mb-6">
+              <h2 class="text-center">
+                <div class="sliding-text-container">
+                  <span class="sliding-text">Projects</span>
                 </div>
+              </h2>
+            </div>
+          </div>
 
-                <div class="row">
-                  <div class="col-lg-6 offset-lg-1 pr-lg-5">
-                    <div class="project-image">
-                      <img
-                        class="gif"
-                        src="img/fylo.gif"
-                        alt="Fylo Landing Page demo animation"
-                      />
-                    </div>
-                    <div class="links d-flex ml-auto my-2">
-                      <a
-                        target="_blank"
-                        href="https://github.com/iulialupu/fylo-landing-page"
-                        class="github"
-                        ><i class="fab fa-github"></i
-                      ></a>
-                      <a
-                        target="_blank"
-                        href="https://iulialupu.github.io/fylo-landing-page/"
-                        class="hosted"
-                        ><i class="fas fa-desktop"></i
-                      ></a>
-                    </div>
+          <div class="row">
+            <div class="col-lg-4 col-md-6">
+              <div id="project1" class="project-card">
+                <a href="/project-1.html" class="project-link">
+                  <h3>Fylo Landing Page</h3>
+                  <div class="project-image">
+                    <img
+                      class="gif"
+                      src="img/fylo.jpg"
+                      alt="Fylo Landing Page demo animation"
+                    />
                   </div>
-
-                  <div class="col-lg-4">
-                    <ul class="technologies-used">
-                      <li>HTML5</li>
-                      <li>SCSS</li>
-                      <li>animate.css</li>
-                      <li>wow.js</li>
-                    </ul>
-                    <p class="project-description">
-                      This project was a solution for a challenge from
-                      <a
-                        class="link"
-                        href="https://www.frontendmentor.io/"
-                        target="_blank"
-                        >Frontend Mentor</a
-                      >. The challenge was to build the site based on the
-                      provided mockup, designs and style guides. I used SCCS for
-                      the styles and also added some content revealing
-                      animations with the use of animate.css and wow.js
-                      libraries, to make the interaction with the site more
-                      engaging for the user.
-                    </p>
+                </a>
+                <div
+                  class="links d-xs-none d-md-flex  justify-content-between align-items-baseline"
+                >
+                  <a href="/project-1.html" class="link project-page-link">
+                    View Project
+                  </a>
+                  <div>
+                    <a
+                      target="_blank"
+                      href="https://github.com/iulialupu/fylo-landing-page"
+                      class="github"
+                      ><i class="fab fa-github"></i
+                    ></a>
+                    <a
+                      target="_blank"
+                      href="https://iulialupu.github.io/fylo-landing-page/"
+                      class="hosted"
+                      ><i class="fas fa-desktop"></i
+                    ></a>
                   </div>
                 </div>
               </div>
             </div>
-          </section>
 
-          <section class="project" id="slide2">
-            <div class="overflow-hidden-small">
-              <div class="container">
-                <div class="row">
-                  <div class="col-lg-4 offset-lg-7">
-                    <h3>E-commerce Clothing Store</h3>
+            <div class="col-lg-4  col-md-6">
+              <div id="project2" class="project-card">
+                <a href="/project-2.html" class="project-link">
+                  <h3>E-commerce Clothing Store</h3>
+
+                  <div class="project-image">
+                    <img
+                      class="gif"
+                      src="img/e-apparel.jpg"
+                      alt="E-commerce Clothing Store demo animation"
+                    />
                   </div>
-                </div>
+                </a>
 
-                <div class="row">
-                  <div class="col-lg-6 offset-lg-1 pr-lg-5">
-                    <div class="project-image">
-                      <img
-                        class="gif"
-                        src="img/e-apparel.gif"
-                        alt="E-commerce Clothing Store demo animation"
-                      />
-                    </div>
-                    <div class="links d-flex ml-auto my-2">
-                      <a
-                        target="_blank"
-                        href="https://github.com/iulialupu/e-commerce_clothing_store"
-                        class="github"
-                        ><i class="fab fa-github"></i
-                      ></a>
-                      <a
-                        target="_blank"
-                        href="https://quiet-tor-78712.herokuapp.com/"
-                        class="hosted"
-                        ><i class="fas fa-desktop"></i
-                      ></a>
-                    </div>
-                  </div>
-
-                  <div class="col-lg-4">
-                    <ul class="technologies-used">
-                      <li>React</li>
-                      <li>Redux</li>
-                      <li>React Router</li>
-                      <li>Redux-persist</li>
-                      <li>React Slick</li>
-                      <li>Axios</li>
-                      <li>CSS3</li>
-                      <li>Json-server</li>
-                    </ul>
-                    <p class="project-description">
-                      The project workflow started with research and gathering
-                      information about the site structure, features as well as
-                      ideas for the visual aspect and style guides, wireframes.
-                    </p>
-                    <p class="project-description">
-                      The site consist of a homapage, a page showcasing all the
-                      products, with the possibility of filtering items by
-                      category, an individual product showcase page, as well as
-                      a wishlist and cart pages. Redux was used for the state
-                      management, where was stored the information about the
-                      products, fetched from the API, using Axios. Also Redux
-                      Persist helped save into the localstorage a part of the
-                      Redux store, containing information about the wishlist and
-                      cart, to make it accessible for future sessions.
-                    </p>
+                <div
+                  class="links d-xs-none d-md-flex justify-content-between align-items-baseline"
+                >
+                  <a href="/project-2.html" class="link project-page-link">
+                    View Project
+                  </a>
+                  <div>
+                    <a
+                      target="_blank"
+                      href="https://github.com/iulialupu/e-commerce_clothing_store"
+                      class="github"
+                      ><i class="fab fa-github"></i
+                    ></a>
+                    <a
+                      target="_blank"
+                      href="https://quiet-tor-78712.herokuapp.com/"
+                      class="hosted"
+                      ><i class="fas fa-desktop"></i
+                    ></a>
                   </div>
                 </div>
               </div>
             </div>
-          </section>
 
-          <section class="project" id="slide3">
-            <div class="overflow-hidden-small">
-              <div class="container">
-                <div class="row">
-                  <div class="col-lg-4 offset-lg-7">
-                    <h3>YourRecipe. MERN Stack Application</h3>
+            <div class="col-lg-4 col-sm-6 hide-on-medium">
+              <div id="project3" class="project-card">
+                <a href="/project-3.html" class="project-link">
+                  <h3>YourRecipe. MERN Stack Application</h3>
+
+                  <div class="project-image">
+                    <img
+                      class="gif"
+                      src="img/recipes.jpg"
+                      alt="YourRecipe Site demo animation"
+                    />
                   </div>
-                </div>
+                </a>
 
-                <div class="row">
-                  <div class="col-lg-6 offset-lg-1 pr-lg-5">
-                    <div class="project-image">
-                      <img
-                        class="gif"
-                        src="img/recipes.gif"
-                        alt="YourRecipe Site demo animation"
-                      />
-                    </div>
-                    <div class="links d-flex ml-auto my-2">
-                      <a
-                        href="https://github.com/iulialupu/YourRecipe"
-                        target="_blank"
-                        class="github"
-                        ><i class="fab fa-github"></i
-                      ></a>
-                      <a
-                        href="https://fathomless-atoll-74121.herokuapp.com/"
-                        target="_blank"
-                        class="hosted"
-                        ><i class="fas fa-desktop"></i
-                      ></a>
-                    </div>
-                  </div>
-
-                  <div class="col-lg-4">
-                    <ul class="technologies-used">
-                      <li>Node.js</li>
-                      <li>Express</li>
-                      <li>MongoDB</li>
-                      <li>Mongoose</li>
-                      <li>React</li>
-                      <li>React-router</li>
-                      <li>Redux</li>
-                      <li>Redux-form</li>
-                      <li>React-bootstrap</li>
-                      <li>React-rating-star-component</li>
-                      <li>Bcrypt</li>
-                      <li>JsonWebToken</li>
-                    </ul>
-                    <p class="project-description">
-                      This is a web application where the user can register and
-                      submit a recipe. The back-end is a RESTful API server, and
-                      a database for storing the recipe and user information.
-                      The front-end part is build with React and Redux. It
-                      includes forms, with form validation for creating and
-                      editing a recipe, as well as forms for user
-                      authentication. The passwords are encrypted with Bcrypt
-                      and saved into the database. Some of the information about
-                      the users is saved in a token, using JsonWebToken, and
-                      added to the localstorage.
-                    </p>
+                <div
+                  class="links d-xs-none d-md-flex justify-content-between align-items-baseline"
+                >
+                  <a href="/project-3.html" class="link project-page-link">
+                    View Project
+                  </a>
+                  <div>
+                    <a
+                      href="https://github.com/iulialupu/YourRecipe"
+                      target="_blank"
+                      class="github"
+                      ><i class="fab fa-github"></i
+                    ></a>
+                    <a
+                      href="https://fathomless-atoll-74121.herokuapp.com/"
+                      target="_blank"
+                      class="hosted"
+                      ><i class="fas fa-desktop"></i
+                    ></a>
                   </div>
                 </div>
               </div>
             </div>
-          </section>
+          </div>
         </div>
-
-        <div class="slider-nav">
-          <div class="arrow left"><span></span></div>
-          <ul class="slider-dots">
-            <li>
-              <a class="slider-link" href="#slide1"
-                ><span class="slider-dot"></span
-              ></a>
-            </li>
-            <li>
-              <a class="slider-link" href="#slide2"
-                ><span class="slider-dot"></span
-              ></a>
-            </li>
-            <li>
-              <a class="slider-link" href="#slide3"
-                ><span class="slider-dot"></span
-              ></a>
-            </li>
-          </ul>
-          <div class="arrow right"><span></span></div>
-        </div>
-      </div>
+      </section>
 
       <!-- TECHNOLOGIES SECTION -->
       <section class="technologies" id="technologies">
         <div class="container">
           <div class="row">
-            <div class="col-lg-4 offset-lg-4 col-md-7 offset-md-1  ">
+            <div class="col-lg-4 offset-lg-4 col-md-8 offset-md-2  ">
               <h2>
                 <div class="sliding-text-container">
                   <span class="sliding-text">Technologies and Skills</span>
@@ -407,7 +342,7 @@
                 <div class="tech-level">
                   <div
                     class="level"
-                    style="width: 25%; animation-delay: 1700ms"
+                    style="width: 45%; animation-delay: 1700ms"
                   ></div>
                   <div class="base"></div>
                 </div>
@@ -466,14 +401,14 @@
                   <div class="base"></div>
                 </div>
 
-                <div class="tech-name">Adobe Ilustrator</div>
+                <!-- <div class="tech-name">Adobe Ilustrator</div>
                 <div class="tech-level">
                   <div
                     class="level"
                     style="width: 60%; animation-delay: 2400ms"
                   ></div>
                   <div class="base"></div>
-                </div>
+                </div> -->
               </div>
             </div>
           </div>
@@ -494,42 +429,86 @@
           </div>
 
           <div class="codepens">
-            <div class="row justify-content-md-center">
-              <div class="col-lg-5 col-md-6">
-                <iframe
-                  src="https://codesandbox.io/embed/zl76xoqq4p?fontsize=10&view=preview"
-                  title="Drawing Game with JS and CSS"
-                  style=" border:0; border-radius: 15px; overflow:hidden;"
-                  sandbox="allow-modals allow-forms allow-popups allow-scripts allow-same-origin"
-                ></iframe>
+            <div class="row">
+              <div class="col-lg-4 col-md-6">
+                <p
+                  class="codepen"
+                  data-height="250"
+                  data-theme-id="light"
+                  data-default-tab="result"
+                  data-user="iulialupu"
+                  data-slug-hash="gVrywx"
+                  style="height: 250px; box-sizing: border-box; display: flex; align-items: center; justify-content: center; border: 2px solid; margin: 1em 0; padding: 1em;"
+                  data-pen-title="Bubbles mouse move"
+                >
+                  <span
+                    >See the Pen
+                    <a href="https://codepen.io/iulialupu/pen/gVrywx/">
+                      Bubbles mouse move</a
+                    >
+                    by iulialupu (<a href="https://codepen.io/iulialupu"
+                      >@iulialupu</a
+                    >) on <a href="https://codepen.io">CodePen</a>.</span
+                  >
+                </p>
               </div>
-              <div class="col-lg-5 col-md-6 hide-on-small">
-                <iframe
-                  src="https://codesandbox.io/embed/4xmw3wq9x9?view=preview"
-                  title="Div perspective transform on mouse move | vanilla js"
-                  style=" border:0; border-radius: 15px; overflow:hidden;"
-                  sandbox="allow-modals allow-forms allow-popups allow-scripts allow-same-origin"
-                ></iframe>
+              <div class="col-lg-4 col-md-6">
+                <p
+                  class="codepen"
+                  data-height="250"
+                  data-theme-id="light"
+                  data-default-tab="result"
+                  data-user="iulialupu"
+                  data-slug-hash="PMzqEL"
+                  style="height: 250px; box-sizing: border-box; display: flex; align-items: center; justify-content: center; border: 2px solid; margin: 1em 0; padding: 1em;"
+                  data-pen-title="Image grow and explore on hover"
+                >
+                  <span
+                    >See the Pen
+                    <a href="https://codepen.io/iulialupu/pen/PMzqEL/">
+                      Image grow and explore on hover</a
+                    >
+                    by iulialupu (<a href="https://codepen.io/iulialupu"
+                      >@iulialupu</a
+                    >) on <a href="https://codepen.io">CodePen</a>.
+                  </span>
+                </p>
+              </div>
+
+              <div class="col-lg-4 col-md-6 hide-on-medium">
+                <p
+                  class="codepen"
+                  data-height="250"
+                  data-theme-id="light"
+                  data-default-tab="result"
+                  data-user="iulialupu"
+                  data-slug-hash="NQjPrW"
+                  style="height: 250px; box-sizing: border-box; display: flex; align-items: center; justify-content: center; border: 2px solid; margin: 1em 0; padding: 1em;"
+                  data-pen-title="menu with sliding underline"
+                >
+                  <span
+                    >See the Pen
+                    <a href="https://codepen.io/iulialupu/pen/NQjPrW/">
+                      menu with sliding underline</a
+                    >
+                    by iulialupu (<a href="https://codepen.io/iulialupu"
+                      >@iulialupu</a
+                    >) on <a href="https://codepen.io">CodePen</a>.
+                  </span>
+                </p>
               </div>
             </div>
-            <!-- <div class="row justify-content-md-center">
-              <div class="col-lg-5 col-md-6">
-                <iframe
-                  src="https://codesandbox.io/embed/vyx9rx4m0l?fontsize=10&view=preview"
-                  title="Dots 2"
-                  style="border:0; border-radius: 15px; overflow:hidden;"
-                  sandbox="allow-modals allow-forms allow-popups allow-scripts allow-same-origin"
-                ></iframe>
+
+            <div class="row">
+              <div class="col-sm-6 offset-md-6  justify-content-right">
+                <a
+                  href="https://codepen.io/iulialupu"
+                  target="_blank"
+                  class="link codepen-link"
+                  ><i class="icon fab fa-codepen"></i>View more...
+                </a>
               </div>
-              <div class="col-lg-5 col-md-6">
-                <iframe
-                  src="https://codesandbox.io/embed/7mp5pjp00j?fontsize=10&view=preview"
-                  title="Dots"
-                  style=" border:0; border-radius: 15px; overflow:hidden;"
-                  sandbox="allow-modals allow-forms allow-popups allow-scripts allow-same-origin"
-                ></iframe>
-              </div>
-            </div> -->
+            </div>
           </div>
         </div>
       </section>
@@ -592,6 +571,8 @@
       integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
       crossorigin="anonymous"
     ></script>
+    <!-- Codepen Embed -->
+    <script async src="https://static.codepen.io/assets/embed/ei.js"></script>
     <!-- My Script -->
     <script src="script.js"></script>
   </body>
