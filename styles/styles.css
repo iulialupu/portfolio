@@ -90,7 +90,7 @@ a.link:hover {
   background: var(--accent);
   display: block;
   width: 0%;
-  height: calc(var(--h2-size) / 3);
+  height: calc(var(--h2-size) / 2.7);
   position: absolute;
   left: 0;
   z-index: -1;
