@@ -11,7 +11,6 @@
   --h1-size: 3.3vw;
   --h2-size: 1.4rem;
   --nav-item: calc(100vh / 6);
-  /* 255, 184, 184 */
 }
 ::-webkit-scrollbar {
   display: none;
