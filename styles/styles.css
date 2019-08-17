@@ -21,7 +21,7 @@ body,
   margin: 0;
 }
 body {
-  cursor: url(./img/cursor.png), auto;
+  cursor: url(../img/cursor.png), auto;
   font-family: "Roboto Mono", monospace;
   font-size: 0.9rem;
   color: rgb(39, 39, 39);
@@ -58,7 +58,7 @@ h3 {
   /* font-weight: bold; */
 }
 p {
-  font-size: 0.85rem;
+  font-size: 0.9rem;
   text-align: left;
   line-height: 1.6;
   font-family: "Work Sans", sans-serif;
@@ -350,25 +350,6 @@ section.in-view h2 .sliding-text:after {
 }
 .about h2 {
   margin-bottom: 3rem;
-}
-.large-logo {
-  transform: rotate(0) scale(0) translate(-30%, -400%);
-}
-
-.about.in-view .large-logo {
-  opacity: 1;
-  width: 110px;
-  height: auto;
-  position: absolute;
-  top: 50vh;
-  left: -70px;
-  z-index: 0;
-  transform: rotate(10deg);
-  transition: transform 1s ease;
-}
-
-.about .large-logo:hover {
-  transform: rotate(0) scale(0.85) translate(-30%, 20%);
 }
 
 .about-text {
